@@ -1,13 +1,17 @@
 import Sidebar from '../../Components/User/Sidebar'
 import OrderList from '../../Components/OrderList'
+import { useState } from 'react'
 
 const OrderPage = () => {
+
+    const [orderList,setOrderList] = useState([])
+
   return (
     <div className='bg-gray-100 h-screen'>
     <Sidebar />
 
     <div className="flex md:ml-64 lg:ml-64">
-      <OrderList role='user'/>
+      <OrderList role='user' orderList={orderList} setOrderList={setOrderList}/>
     </div>
   </div>
   )

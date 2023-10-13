@@ -7,9 +7,9 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 
 
-const OrderList = ({role,path,title}) => {
+const OrderList = ({role,path,title,orderList,setOrderList}) => {
 
-  const [orderList,setOrderList] = useState([])
+
   const [noMore,setNoMore] = useState(false)
   const [filter,setFilter] =useState('all')
   const [loading,setLoading] =useState('')
@@ -30,9 +30,6 @@ const OrderList = ({role,path,title}) => {
     }
   }
 
-  const getOrderDatas =async () => {
-      console.log(orderList);
-  }
   useEffect(()=>{
     getOrderData()
   },[])
@@ -48,7 +45,7 @@ const OrderList = ({role,path,title}) => {
                 <table className="min-w-full divide-y divide-gray-200 -divide-gray-700 ">
                     <thead className="bg-gray-50 -bg-gray-800 ">
                         <tr className='text-gray-700 capitalize font-medium text-[.999rem] '>
-                            <th onClick={getOrderDatas} className='font-medium text-left pl-4 border-l'>#</th>
+                            <th  className='font-medium text-left pl-4 border-l'>#</th>
                             <th className='font-medium text-center py-4 px-4 border-l'>{role == 'provider' ? 'customer' : role == 'user' ? 'Provider' : 'provider'}</th>
                             {role == 'admin' ? <th className='font-medium text-center py-4 px-4 border-l'>customer</th> : ''}
                             <th className='font-medium text-center py-4 px-4 border-l'>Order At</th>
@@ -96,6 +93,7 @@ const OrderList = ({role,path,title}) => {
             </div>
         </div>
       </div>
+
     </section>
   )
 }
@@ -103,7 +101,9 @@ const OrderList = ({role,path,title}) => {
 OrderList.propTypes = {
   role: PropTypes.string.isRequired, // Define the expected type and mark it as required
   path:PropTypes.string,
-  title:PropTypes.string
+  title:PropTypes.string,
+  orderList:PropTypes.any,
+  setOrderList:PropTypes.any
 };
 
 export default OrderList

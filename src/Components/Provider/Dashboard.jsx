@@ -6,12 +6,13 @@ import Button from "../CustomComponent/Button"
 import OrderList from "../OrderList"
 import { useNavigate } from "react-router-dom"
 import { AiOutlineArrowRight } from "react-icons/ai"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 // import { useSelector } from "react-redux"
 import Transation from "./Transation"
 
 
 const Dashboard = () => {
+  const [orderList,setOrderList] = useState([])
 
 //   const provider = useSelector((state) => state.provider.providerData);
 
@@ -44,11 +45,11 @@ const Dashboard = () => {
             <TransactionChart/>
         </div>
         <div className="">
-          <OrderList role='provider' path='/dashboard' title='latest Salse'/>
-            <div  className="flex items-center justify-center p-4 w-full">
-            <Button  className={'text-center my-8 animate-bounce text-blue-800 text-[1rem]'} handelEvent={()=>navigate('/provider/orders')} content={<p className='flex items-center '>See More<span><AiOutlineArrowRight className='text-blue-600 mx-2'/></span></p>}/>
-
-            </div>
+          <OrderList role='provider' path='/dashboard' title='latest Salse' orderList={orderList} setOrderList={setOrderList}/>
+            {orderList&&orderList.length&&orderList.length == 5&&
+                <div  className="flex items-center justify-center p-4 w-full">
+                    <Button  className={'text-center my-8 animate-bounce text-blue-800 text-[1rem]'} handelEvent={()=>navigate('/provider/orders')} content={<p className='flex items-center '>See More<span><AiOutlineArrowRight className='text-blue-600 mx-2'/></span></p>}/>
+                </div>}
             <Transation/>
         </div>
 

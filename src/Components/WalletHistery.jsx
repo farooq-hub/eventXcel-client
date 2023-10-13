@@ -6,7 +6,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { toast } from 'react-toastify';
 
 
-const WalletHistory = ({role,walletHistory}) => {
+const WalletHistory = ({walletHistory}) => {
 
     const [transationHistory,setTransationHistory] = useState([])
     const [search,setSearch] =useState({
@@ -22,7 +22,7 @@ const WalletHistory = ({role,walletHistory}) => {
     const filteringTrnHis = (active,date) =>{
         if(!date){
             setLoading('getingWallethistoy')
-            let filteredHistory = walletHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+            let filteredHistory = [...walletHistory].sort((a, b) => new Date(b.date) - new Date(a.date));
 
     
             if (search.from && search.to) {
@@ -66,7 +66,9 @@ const WalletHistory = ({role,walletHistory}) => {
     }
     useEffect(()=>{
         if(walletHistory) {
-            setTransationHistory(walletHistory.sort((a, b) => new Date(b.date) - new Date(a.date)))
+        console.log(walletHistory,'sdhgasjhdgjashdg');
+
+            filteringTrnHis()
             setLoading('')
         }else setLoading('getingWallethistoy')
     },[walletHistory])

@@ -60,8 +60,10 @@ const Login = ({role}) => {
         e.preventDefault();
         if (formValid) {
             try {
+                setLoading('userLogin')
                 const response = await role == 'admin' ? adminPost('/login',formData) : role == 'user' ? usersPost('/login',formData):providerPost('/login',formData)
                 response.then((response)=>{
+                        setLoading('')
                         const token = response?.token;
                         const role = response?.role;
                         const providerData = response?.providerData;
@@ -70,20 +72,18 @@ const Login = ({role}) => {
 
                         if (role === 'user') {
                             dispatch(userLogin({ userData, token, role}));
-                            toast.success(response.msg)
                             navigate('/')
 
                         } else if (role === 'admin') {
                             console.log(role);
                             dispatch(adminLogin({adminData, token, role}));
-                            toast.success(response.msg)
                             navigate('/admin')
                         } else if (role === 'provider') {
                             dispatch(providerLogin({ token, role, providerData }));
-                            toast.success(response.msg)
                             navigate('/provider/home')
                         }
                 }).catch((error)=>{
+                    setLoading('')
                     console.log(error);
                 })
             } catch (error) {
@@ -129,7 +129,11 @@ const Login = ({role}) => {
                         : null
                 }
                 <div  className={`${role=='admin'?'flex justify-center mt-6' :'flex justify-center'}`}>
-                    <Button className='border-none rounded-full my-5 w-44 h-12 transition duration-300 text-white font-bold bg-black py-2 hover:bg-gray-400' type={'submit'} content={'Login'} />
+                    <Button type="submit" className={`border-none rounded-full my-5 w-44 h-12 transition duration-300 text-white font-bold bg-black py-2 hover:bg-gray-400`}
+                        content={
+                            <div className="flex items-center justify-center">{loading === 'userLogin' ? (
+                            <><div className="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div><p className="ml-2"> Processing... </p></>
+                            ) : (<p>Login</p>)}</div>}/>
                 </div>
                 {
                     role !== 'admin' ?

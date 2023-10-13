@@ -22,7 +22,8 @@ const Profile = () => {
   
     const [userData,setUserData] = useState({})
     const [updateUser,setupdateUser] = useState(false)
-  const [loading,setLoading] = useState('')
+    const [loading,setLoading] = useState('')
+    const [orderList,setOrderList] = useState([])
   
   // const [remainter,setRemainter] = useState(false)
   const img = useRef()
@@ -81,6 +82,7 @@ const Profile = () => {
     };
 
     const handleChange = (event) => {
+        console.log(userData);
         const { name, value } = event.target;
         setFormData(prevFormData => ({
             ...prevFormData,
@@ -92,15 +94,13 @@ const Profile = () => {
         event.preventDefault()
         const error = await errorHandle()
         if(!error){
+            setLoading('updateUser')
             const img =true;
             console.log(formData);
             await usersPatch('/editProfile',formData,img).then((res)=>{
-                res.userData? setUserData(res.userData):''
-                res.userData? dispatch(updateUserData({userData:res.userData})):null
-                userData.image ? setUserData(prevUserData => ({
-                    ...prevUserData,
-                    image:res.image
-                })) :''
+                res.userData? setUserData((prev)=>({...prev,...res.userData})):''
+                res.userData? dispatch(updateUserData({userData:{...userData,...res.userData}})):null
+                setLoading('')
                 updateCancel()
             }).catch((error)=>{
                 console.log(error);
@@ -111,17 +111,14 @@ const Profile = () => {
     const errorHandle = () => {
         const { name, email,file,place } = formData;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if(name !== userData.name || email !== userData.email||place != userData.place||file||!file){
+        if(name !== userData.name || email !== userData.email||place != userData.place||file){
             if(name.trim().length < 2){
                 toast.error('Enter a valid name')
                 return true
             }else if(!emailRegex.test(email)){
                 toast.error('Enter a valid email address')
                 return true
-            }else{
-                console.log('llllllllllll');
-                return false
-            }
+            }else return false
 
         }else{
             toast.info("Did't change anything")
@@ -240,10 +237,12 @@ const Profile = () => {
 
         </div>
         <div className="">
-          <OrderList role='user' path='/profile'/>
-        <div  className="flex items-center justify-center p-4 w-full">
-          <Button  className={'text-center my-8 animate-bounce text-blue-800 text-[1rem]'} handelEvent={()=>navigate('/orders')} content={<p className='flex items-center '>See More<span><AiOutlineArrowRight className='text-blue-600 mx-2'/></span></p>}/>
-        </div>
+          <OrderList role='user' path='/profile' orderList={orderList} setOrderList={setOrderList}/>
+            {orderList&&orderList.length&&orderList.length == 5 &&
+                <div  className="flex items-center justify-center p-4 w-full">
+                    <Button  className={'text-center my-8 animate-bounce text-blue-800 text-[1rem]'} handelEvent={()=>navigate('/orders')} content={<p className='flex items-center '>See More<span><AiOutlineArrowRight className='text-blue-600 mx-2'/></span></p>}/>
+                </div>
+            }
         <div className="mb-10">
           <WalletHistory role='user' walletHistory={userData?.walletHistory}/>
         </div>
@@ -259,7 +258,7 @@ const Profile = () => {
                         <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <h1 className="text-center text-xl mb-4 font-medium">Update Profile</h1>
                             <div className="rounded-full shadow-slate-500 mb-4 flex items-center justify-center flex-col">
-                                <img className="w-40 h-40 p-2 mb-3 rounded-full object-cover shadow-lg" src={imageSrc === avatar? addDp : imageSrc} onClick={()=>img.current.click()} alt="loading..."/>
+                                <img className="w-40 h-40 p-2 mb-3 rounded-full object-cover shadow-lg" src={imageSrc === avatar? addDp : imageSrc} onClick={()=>img.current.click()}  loading="lazy" alt="loading..."/>
                                 <input type="file" className="hidden" name="file" ref={img} onChange={handleFileChange}/>
                             </div>
                             <div className="flex items-center justify-between w-full mt-5 gap-x-2">
@@ -301,11 +300,11 @@ const Profile = () => {
                                     onClick={updateCancel}
                                     className="px-4 sm:mx-2 w-full py-2.5 text-sm font-medium text-black  border border-gray-300 hover:bg-slate-100 tracking-wide capitalize transition-colors duration-300 transform rounded-md  focus:outline-none"
                                 >Cancel</button>
-                                <button
-                                    type="submit" className="px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-500 rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                                >
-                                    {/* {loading ? <span className="loading loading-dots loading-xs"> </span> : 'Confirm'} */}Confirm
-                                </button>
+                                <Button type="submit" className={`px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-500 rounded-md hover:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40`}
+                                    content={
+                                        <div className="flex items-center justify-center">{loading === 'updateUser' ? (
+                                        <><div className="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div><p className="ml-2"> Processing... </p></>
+                                        ) : (<p>Confirm</p>)}</div>}/>
                             </div>
                         </form>
                     </div>

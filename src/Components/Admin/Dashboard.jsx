@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom"
 import OrderList from "../OrderList"
 import Button from "../CustomComponent/Button"
 import { AiOutlineArrowRight } from "react-icons/ai"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 const Dashboard = () => {
+  const [orderList,setOrderList] = useState([])
 
   const navigate = useNavigate()
 //   const updateAdminData=()=>{
@@ -55,10 +56,11 @@ const Dashboard = () => {
             <TransactionChart/>
         </div>
         <div className="">
-          <OrderList role='admin' path='/dashboard' title='latest Salse'/>
-          <div  className="flex items-center justify-center p-4 w-full">
+          <OrderList role='admin' path='/dashboard' title='latest Salse' orderList={orderList} setOrderList={setOrderList}/>
+          {orderList&&orderList.length&&orderList.length == 5&&
+            <div  className="flex items-center justify-center p-4 w-full">
             <Button  className={'text-center my-8 animate-bounce text-blue-800 text-[1rem]'} handelEvent={()=>navigate('/admin/orders')} content={<p className='flex items-center '>See More<span><AiOutlineArrowRight className='text-blue-600 mx-2'/></span></p>}/>
-          </div>
+          </div>}
           {/* <div className="mb-10">
             <WalletHistory role='user' walletHistory={userData?.walletHistory}/>
           </div> */}
