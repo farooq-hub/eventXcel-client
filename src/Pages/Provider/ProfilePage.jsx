@@ -1,7 +1,5 @@
 import Sidebar from "../../Components/Provider/Sidebar";
-import Profile from "../../Components/Provider/profile";
-
-
+import Profile from "../../Components/Provider/Profile";
 
 
 function ProfilePage() {

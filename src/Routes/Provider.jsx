@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Login from "../Components/Login"
 import Register from "../Components/Provider/Register"
 import ProviderHome from "../Pages/Provider/Home";
-import ProfilePage from "../Pages/Provider/Profile";
+import ProfilePage from "../Pages/Provider/ProfilePage";
 import PostPage from "../Pages/Provider/Posts";
 import OptionPage from "../Pages/Provider/OptionPage";
 import OrderPage from "../Pages/Provider/OrderPage";
