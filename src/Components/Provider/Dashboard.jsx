@@ -1,19 +1,19 @@
 import DashboardCards from "../DashboardCards"
 import { MdWorkHistory } from "react-icons/md"
 import TransactionChart from "../TransactionChart"
-import OrderChart from "../orderChart"
+import OrderChart from "../OrderChart"
 import Button from "../CustomComponent/Button"
 import OrderList from "../OrderList"
 import { useNavigate } from "react-router-dom"
 import { AiOutlineArrowRight } from "react-icons/ai"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+// import { useSelector } from "react-redux"
 import Transation from "./Transation"
 
 
 const Dashboard = () => {
 
-  const provider = useSelector((state) => state.provider.providerData);
+//   const provider = useSelector((state) => state.provider.providerData);
 
   const navigate = useNavigate()
   
