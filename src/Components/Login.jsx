@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { adminPost } from '../Services/adminApi';
 import { usersPost } from '../Services/userApi';
 import { providerPost } from '../Services/providerApi';
+import Button from './CustomComponent/Button';
 
 
 
@@ -19,6 +20,7 @@ const Login = ({role}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState('')
     const [formData, setFormData] = useState({
         phone: '',
         password: ''
@@ -127,7 +129,7 @@ const Login = ({role}) => {
                         : null
                 }
                 <div  className={`${role=='admin'?'flex justify-center mt-6' :'flex justify-center'}`}>
-                    <button className='border-none rounded-full my-5 w-44 h-12 transition duration-300 text-white font-bold bg-black py-2 hover:bg-gray-400'>Login</button>
+                    <Button className='border-none rounded-full my-5 w-44 h-12 transition duration-300 text-white font-bold bg-black py-2 hover:bg-gray-400' type={'submit'} content={'Login'} />
                 </div>
                 {
                     role !== 'admin' ?
