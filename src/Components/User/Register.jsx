@@ -187,7 +187,7 @@ const Register = ()=> {
       };
 
   return (
-      <div className='relative w-full h-full sm:h-screen  bg-slate-100'>
+      <div className='relative w-full h-screen  bg-slate-100'>
         <div id='recaptcha-container'></div>
         <div className='flex justify-center items-center h-full '>
             { click ? (
