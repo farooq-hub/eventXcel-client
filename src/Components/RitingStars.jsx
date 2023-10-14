@@ -33,7 +33,7 @@ function RatingStats({user_ratings}) {
     <p className='mx-2 text-2xl font-serif mb-4  text-center'>Total Rating</p>
 
     <div className='flex items-center mx-auto space-x-2'>
-    <StarRating rating={user_ratings&&user_ratings.length?Math.floor(user_ratings?.reduce((accumulator, current) =>accumulator + current.rating,0)/user_ratings.length):5}  
+    <StarRating rating={user_ratings&&user_ratings.length?Math.floor(user_ratings?.reduce((accumulator, current) =>accumulator + current.rating,0)/user_ratings.length):0}  
     className={'text-4xl'}/><span className='leading-none font-mono'>({user_ratings.length?user_ratings?.reduce((accumulator, current) =>accumulator + current.rating,0)/user_ratings.length:0})</span>
     </div>
     <p className='ml-2 leading-none text-center text-gray-900 font-mono'>{user_ratings.length?user_ratings.length:0} reviews</p>

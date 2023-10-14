@@ -47,7 +47,8 @@ const Login = ({role}) => {
     }
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+        name =='phone'?value = value.replace(/\s/g, ''):null
         setFormData((prev) => ({
         ...prev,
         [name]: value

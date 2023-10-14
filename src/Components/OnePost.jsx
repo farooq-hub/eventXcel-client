@@ -57,7 +57,6 @@ const OnePost = ({post,handleEvent,user,role}) => {
     }
 
     const likePostUser =async () => {
-        console.log(user,'||||||||||||||||',role);
         if(user){
         if(!postData.likes.includes(user._id)){
             setPostData((prev) => ({

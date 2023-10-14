@@ -26,7 +26,7 @@ const HomePage = () => {
       };
     return (
 
-        <div className='mt-1'>
+        <div className='max-w-screen'>
 
             <Sidebar/>
             {showButton && (

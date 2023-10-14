@@ -38,12 +38,12 @@ const Home = () => {
 
     
   return (
-    <div className='h-96 w-full '>
-        <div className="grid mx-2 grid-cols-1 lg:grid-cols-6">
+    <div className='h-96 w-full maxw-screen'>
+        <div className="grid md:mx-2 grid-cols-1 lg:grid-cols-6">
             <div className='flex mt-4 flex-col items-center  lg:col-span-4'>
                 {loading == 'post'?
-                    [1,2,3].map((val)=><LoadingPost key={1999+val}/>)  
-                    :<div className='md:w-[30rem] sm:w-[28rem] w-[21rem]'>
+                    [1,2,3].map((val)=><LoadingPost key={1999+val}/>)  :
+                    <div className='md:w-[30rem] sm:w-[28rem] w-[21rem] sm:p-0 p-3'>
                     {postList.length&&postList.map((post) => (
                     <OnePost
                         key={post._id}

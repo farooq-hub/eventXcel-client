@@ -28,7 +28,7 @@ const ImageSlider = ({images,height,width,manageIndex,currentIndex,object,onClic
                     src={image instanceof File ? URL.createObjectURL(image) :  image}
                     alt="Slider Image"
                     onClick={onClick?onClick:null}
-                    className={`w-full h-auto  top-0 left-0 transition-opacity duration-500 ${object?object:''} ease-in-out ${
+                    className={`w-full h-auto  top-0 left-0 transition-opacity duration-500 bg-gray-100 ${object?object:''} ease-in-out ${
                         index === currentIndex ? 'opacity-100' : 'opacity-0 absolute'
                     }`}
                     />

@@ -76,7 +76,7 @@ const Sidebar = () => {
                     <NavItem icon={<GrPowerShutdown/>} name={"LOGOUT"} path={'/provider/login'} />
                     <div className="absolute z-50  bottom-3 left-3 flex ">
                         <Button className="text-lg font-mono flex items-center hover:underline text-gray-900 rounded space-x-2 transition duration-100"
-                            handelEvent={() => navigate('/provider/profile#transationHistory')} content={<>
+                            handelEvent={() => navigate('/provider#transationHistory')} content={<>
                             <IoWalletOutline className="text-2xl text-blue-600"/><span className="mx-4">:</span>{wallet?<span>₹ {wallet}.00</span>:
                             <div className="h-5 w-5 border-2 rounded-full bg-white border-t-transparent animate-spin border-gray-900"></div>}</>}/>
                     </div>       

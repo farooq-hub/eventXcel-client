@@ -41,7 +41,7 @@ const Dashboard = () => {
         <div>
             <OrderChart/>
         </div>
-        <div>
+        <div >
             <TransactionChart/>
         </div>
         <div className="">

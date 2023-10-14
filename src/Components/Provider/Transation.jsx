@@ -7,7 +7,7 @@ const Transation = () => {
 
   return (
     <>
-        <div className="mb-10">
+        <div className="mb-10" id="transationHistory">
             <WalletHistory role='provider' walletHistory={walletHistory}/>
         </div>
     </>
