@@ -7,8 +7,6 @@ import { auth } from "../../api/firebace.config";
 import OtpInput from 'otp-input-react'
 import {  toast } from 'react-toastify';
 import { usersPost } from '../../Services/userApi';
-import { useDispatch } from 'react-redux';
-import { userLogin } from '../../store/slice/user';
 
 const Register = ()=> {
 
@@ -28,7 +26,6 @@ const Register = ()=> {
         referralCode: ""
       });
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
 
       const handleChange = (e) => {
@@ -158,21 +155,13 @@ const Register = ()=> {
 
     const handleSubmit = async () => {
       try {
-        await usersPost(`/signup`, formData).then((response)=>response.status === 200?userLoging():null)
+        await usersPost(`/signup`, formData).then((response)=>response?navigate("/login?signup=success"):null)
         .catch((error)=>console.log(error))
       } catch (error) {
         console.log(error)
       }
     };
 
-    const userLoging = async ()=>{
-      await usersPost('/login',{phone:formData.phone,password:formData.password}).then((response)=>{
-        if (response.userData) {
-            dispatch(userLogin({ userData:response?.userData, token:response?.token, role:response?.role}));
-            navigate('/')
-        }else navigate("/login?signup=success")
-      }).catch(()=> navigate("/login?signup=success"))
-    }
 
   return (
     <div className='relative w-full h-screen  bg-slate-100'>
