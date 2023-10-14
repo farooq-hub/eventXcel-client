@@ -34,8 +34,8 @@ const  Providers = ()=> {
 
     const fetchProviders = async (loading,showMor) => {
         try {
+            setLoading(loading?loading:'fetchingProvider')
             console.log(loading,searchText,'1');
-            !loading?setLoading('fetchingProvider'):setLoading(loading)
             await usersGet(`/providersList?skip=${loading=='morePost'?providers.length:0}&search=${searchText}&service=${filter.service}&place=${filter.place}`)
             .then((res)=>{
                 res.providersData&&res.providersData.length&&res.providersData.length%6==0?setMore(true):setMore(false)
@@ -69,8 +69,9 @@ const  Providers = ()=> {
     }, [filter]);
     
     useEffect(() => {
+        setLoading('fetchingProviderFirst')
         if(servicesData)setServices(servicesData)
-        fetchProviders('fetchingProviderFirst')
+        fetchProviders()
     }, []);
 
         
