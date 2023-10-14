@@ -38,7 +38,6 @@ const Register = ()=> {
       };
 
 
-
     function onCaptchaVerify() {
         try{
             if (!window.recaptchaVerifier) {

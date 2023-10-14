@@ -71,7 +71,7 @@ const  Providers = ()=> {
     useEffect(() => {
         setLoading('fetchingProviderFirst')
         if(servicesData)setServices(servicesData)
-        fetchProviders()
+        fetchProviders('fetchingProviderFirst')
     }, []);
 
         
