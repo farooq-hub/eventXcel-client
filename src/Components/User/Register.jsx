@@ -155,7 +155,8 @@ const Register = ()=> {
 
     const handleSubmit = async () => {
       try {
-        await usersPost(`/signup`, formData).then((response)=>response?navigate("/login?signup=success"):null)
+        const phone = formData.phone.replace(/^\+91/, '');
+        await usersPost(`/signup`, {...formData,phone}).then((response)=>response?navigate("/login?signup=success"):null)
         .catch((error)=>console.log(error))
       } catch (error) {
         console.log(error)
