@@ -62,7 +62,8 @@ const Sidebar = () => {
                 <div >
 
                     <div className="mt-5 ml-5">
-                        <h1 className="font-sans font-black text-slate-900 text-3xl ">ELITE</h1>
+                        <h1 className="font-sans font-black text-slate-900 text-3xl italic">Event<span className=" font-mono text-5xl text-red-950 leading-none">X</span>cel</h1>
+
                         <p className="text-sm font-semibold pb-6">Lets make..</p>
 
                     </div>

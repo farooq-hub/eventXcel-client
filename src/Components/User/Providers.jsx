@@ -197,7 +197,6 @@ const  Providers = ()=> {
                                 .map((provider) =><ProviderCard provider={provider} key={provider?._id}/>)
                             ):<ProviderCard role={'noProvider'} />)
                         }
-                    
                     </div>
                     <div className="text-center">
                         {
