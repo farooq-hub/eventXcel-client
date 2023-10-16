@@ -150,7 +150,7 @@ const Profile = () => {
   return (
     <div className="w-full">
         <div className="bg-white border border-gray-100 rounded-lg shadow mb-4 pb-8">
-            <div className="absolute right-12 mt-4 rounded">
+            {/* <div className="absolute right-12 mt-4 rounded">
                 <button  className="border border-gray-400 p-2 rounded text-gray-300 hover:text-gray-300 bg-gray-100 bg-opacity-10 hover:bg-opacity-20" title="Settings">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
@@ -188,8 +188,8 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-            </div>
-            <div className="w-full h-[18rem] ">
+            </div> */}
+            <div className="w-full h-[16rem] ">
                 {loading == 'getingUserData'?
                 <div className="w-full bg-gray-200 animate-pulse h-full object-cover rounded-tl-lg rounded-tr-lg"/>:
                 <img src={coverPic} className="w-full h-full object-cover rounded-tl-lg rounded-tr-lg"/>

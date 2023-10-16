@@ -23,7 +23,7 @@ const ImageSlider = ({images,height,width,manageIndex,currentIndex,object,onClic
                 <div className={`relative ${height ? height : 'h-auto'} ${width ? width : 'w-auto'} overflow-hidden `}>
                 {Array.from(images).map((image, index) => (
                     <img
-                    loading="lazy"
+                    loading={!onClick&&'lazy'}
                     key={index}
                     src={image instanceof File ? URL.createObjectURL(image) :  image}
                     alt="Slider Image"

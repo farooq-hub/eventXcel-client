@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Button from '../CustomComponent/Button';
@@ -49,9 +49,7 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
     
 
   return (
-    <div className="flex w-full flex-col items-center pt-8 lg:mt-0">
-    <p className="text-2xl font-serif text-center">Payment Details</p>
-    <p className="text-gray-500 mt-1 text-center text-[.85rem]">Complete your order by providing your payment details.</p>
+    <div className="flex w-full flex-col items-center  lg:mt-0">
 <form className=" max-w-lg space-y-8 px-4 mt-8">
 <div className="flex flex-wrap -mx-3 ">
     <div className="w-5/6 px-3 ">
@@ -76,7 +74,7 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Date of the event
       </label>
-        <input onChange={handleChange} value={orderDetails?.date} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+        <input onChange={handleChange}  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
         id="grid-date"
         name="date"
         min={(() => {
@@ -92,7 +90,7 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Mobile
       </label>
-      <input onChange={handleChange} name="mobile" value={orderDetails?.mobile} defaultValue={userData?.phone} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      <input onChange={handleChange} name="mobile" defaultValue={userData?.phone} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
          id="grid-mobile" type="tel" placeholder="9999990000"/>
       <p className="text-gray-600 text-xs italic">Please enter a valid mobile number.</p>
     
@@ -101,13 +99,13 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
   <div className="flex flex-wrap -mx-3">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >landmark</label>
-      <input onChange={handleAddressChange} name="landmark" defaultValue={userData?.place} value={orderDetails?.landmark}  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Cyber parck"/>
+      <input onChange={handleAddressChange} name="landmark" defaultValue={userData?.place} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Cyber parck"/>
     </div>
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         City
       </label>
-      <input onChange={handleAddressChange} name="city" defaultValue={userData.place} value={orderDetails?.city} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="kochi"/>
+      <input onChange={handleAddressChange} name="city" defaultValue={userData.place} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="kochi"/>
     </div>
 
   </div>
@@ -117,7 +115,7 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         Zip
       </label>
-      <input onChange={handleAddressChange} value={orderDetails?.zip} name="zip" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+      <input onChange={handleAddressChange}  name="zip" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
       id="grid-zip" type="number" placeholder="60210" minLength={6} pattern="\d{6}"/>
     </div>
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -141,7 +139,7 @@ const PaymentDetails = ({error,provider,orderDetails,setOrderDetails,setCheckout
 </form>
 <div className='mt-8'>
     <Button content={<p className='flex items-center'><span className='mr-2 text-lg'><IoIosArrowBack/></span>Add more options</p>} handelEvent={()=>setCheckout(false)} type={'button'}
-                        className={'py-2.5 px-2  bg-slate-500 hover:bg-slate-700  duration-[500ms,800ms] text-[1.01rem] text-white rounded-md ml-6'}/>
+      className={'py-2.5 px-2  bg-slate-500 hover:bg-slate-700  duration-[500ms,800ms] text-[1.01rem] text-white rounded-md ml-6'}/>
 
 </div>
   </div>

@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const OrderChart = () => {
@@ -51,15 +52,19 @@ const OrderChart = () => {
   const series = [
     {
       name: 'Order For',
-      data: [12000,13000,14000,15000,10000,9000,8000,8000,10000],
+      data: [0,0,0,0,0,0,0,0,1200000,1300000],
     },
   ];
 
+  useEffect(()=>{
+
+  },[])
+
   return (
     <div id="chart">
-                    <div className="flex items-center h-12  bg-slate-200 rounded-md mx-4 my-2">
+            <div className="flex items-center h-12  bg-slate-200 rounded-md mx-4 my-2">
 
-          <h2 className="text-xl font-semibold  m-auto">Order<span className='text-base'> ( 2023 )</span> </h2>
+          <h2 className="text-xl font-semibold  m-auto">Sales<span className='text-base'> ( 2023 )</span> </h2>
             </div>
             <div className="double-column-chart text-gre">
       <ReactApexChart options={options} series={series} type="area" height={350} />

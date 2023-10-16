@@ -3,7 +3,8 @@ import {createSlice}  from '@reduxjs/toolkit';
 const initialState = {
     role:null,
     token:null,
-    providerData:null
+    providerData:null,
+    sales:null
 };
 
 export const providerAuthSlice = createSlice({
@@ -17,6 +18,9 @@ export const providerAuthSlice = createSlice({
         },
         updateProviderData:(state, action) => {
             state.providerData = action.payload.providerData;
+        },
+        updateSales: (state, action) => {
+            state.sales = action.payload.sales;
         },
         providerLogout: (state) => {
             state.role = null;

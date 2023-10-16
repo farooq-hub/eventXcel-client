@@ -79,13 +79,15 @@ const CheckoutForm = ({provider,setCheckout,selectedOption,setSelectedOption,ord
 
   return (
     <>
+    <p className="text-2xl font-serif text-center mt-2">Payment Details</p>
+    <p className="text-gray-500 mt-1 text-center text-[.85rem]">Complete your order by providing your payment details.</p>
 <div className="grid sm:px-10 w-full lg:grid-cols-2  bg-white">
     <PaymentDetails error={error} provider={provider} orderDetails={orderDetails} setCheckout={setCheckout} setOrderDetails={setOrderDetails}/>
   <div className="flex items-center w-full h-full justify-center">
     <div className="w-full mt-8 md:mt-12">
         <div className="">
-            <div className="max-h-56 xl:max-h-96 px-4 py-6 sm:px-8 sm:py-10 border-b overflow-y-scroll">
-               <OptionDetails options={selectedOption} setSelectedOption={setSelectedOption} role={'checkout'}/>
+            <div className="max-h-56 xl:max-h-96 px-4 py-6 sm:px-8 lg:px-0 xl:px-8 sm:py-10 border-b overflow-y-scroll">
+               <OptionDetails setCheckout={setCheckout} options={selectedOption} setSelectedOption={setSelectedOption} role={'checkout'}/>
             </div>
 
           <div className="mt-6 space-y-3 text-center border p-4">

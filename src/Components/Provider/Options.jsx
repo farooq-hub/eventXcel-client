@@ -8,7 +8,7 @@ import { providerGet, providerPatch, providerPost } from '../../Services/provide
 import Button from '../CustomComponent/Button';
 import { useSelector } from 'react-redux';
 import { IoArrowUndoCircleOutline, IoFlagSharp } from 'react-icons/io5';
-import { AiOutlineWarning } from 'react-icons/ai';
+import { AiOutlineEdit, AiOutlineWarning } from 'react-icons/ai';
 
 
 const Options = () => {
@@ -69,6 +69,7 @@ const Options = () => {
     };
 
     const handleChange = (event) => {
+        console.log(formData);
         const { name, value } = event.target;
         setFormData(prevFormData => ({
             ...prevFormData,
@@ -95,7 +96,6 @@ const Options = () => {
             setError('Unsupported file found(Only Image files is allowed)!')
         }
     };
-
     const createFormData = (formData) => {
         const form = new FormData();
         form.append('title',formData.title)
@@ -114,16 +114,21 @@ const Options = () => {
         console.log(formData);
         const errors =await validateFormData();
         if (!errors) {
-            setLoading('submitForm')
-            let img = true
-            const form =await createFormData(formData);
-            await providerPost('/option',form,img).then((res)=>{
-                res && res.newOption?setOptionsList(prevPostsList => [res.newOption,...prevPostsList]):''
-                res && res.newOption?addOptionClose():setLoading('')            
-                console.log(res)
-            }).catch((error)=> {
-                    setLoading('')                
-                console.log(error)})
+            try {
+                const form = await createFormData(formData);
+
+                    const res =modal === 'add-option'? await providerPost('/option', form, true):
+                    modal === 'edit-option'? await providerPost('/option', form, true):null
+                    if (res && res.newOption) {
+                        setOptionsList((prevPostsList) => [res.newOption, ...prevPostsList]);
+                        addOptionClose();
+                    }
+                    console.log(res);
+                setLoading('');
+            } catch (error) {
+                setLoading('');
+                console.error(error);
+            }
         }
     }
 
@@ -189,6 +194,19 @@ const Options = () => {
         
     }
 
+    const openEditForm = (option) =>{
+        setModal('edit-option')
+        setFormData({
+            title: option?.title,
+            description:option?.description,
+            optionImages: option?.optionImages,
+            price:option?.price,
+            service:option?.serviceId?._id,
+            priceOption:option.priceOption,
+            optionId:option._id
+        })
+    }
+
     const priceOption = [
         {value:"Per day",label:"Per day"},
         {value:"Per person",label:"Per person"}
@@ -231,6 +249,10 @@ const Options = () => {
                                         <td className='text-gray-600 border-l border-gray-300 px-4 py-3.5 text-sm  capitalize md:break-all whitespace-normal text-center'><p className=''>{option.isFlag?'flaged':(option.isBanned?'banned':'active')}</p></td>
                                         <td className='text-gray-600 border-l border-gray-300 px-4 py-3.5 text-sm  capitalize md:break-all whitespace-normal text-center'>
                                             <Button content={!option.isFlag?<IoFlagSharp className='m-1 text-lg text-red-800'/>:<IoArrowUndoCircleOutline className='m-1 text-lg text-green-800'/>} handelEvent={()=>{setModal('confirm');setSelectedOption(option)}} type={'button'}/>
+                                            { !option.isFlag&&
+                                            <Button content={<AiOutlineEdit className='m-1 text-lg text-red-800'/>} handelEvent={()=>{openEditForm(option)}} type={'button'}/>
+                                            
+                                            }
                                         </td>
                                     </tr>)):
                                     <tr className='hover:bg-gray-200 '>
@@ -252,7 +274,7 @@ const Options = () => {
                     </div>
                 </div>
             </div>
-                {modal == 'add-option'?
+                {modal === 'add-option' || modal === 'edit-option'?
                     <Modal closeModal={loading !== 'submitForm' ?addOptionClose:''}
                         modalHeader={
                             <div className=' text-center my-2'>
@@ -263,7 +285,7 @@ const Options = () => {
                         modalBody={
                             <div className="p-4 mx-6 overflow-hidden text-left align-middle transition-all transform bg-white  sm:max-w-sm rounded-xl sm:w-full sm:p-6">
                                 <div className={`flex items-center justify-center w-[21rem] overflow-hidden h-48 mb-4 ${!formData.optionImages.length?'bg-gray-300':''} rounded`}>
-                                        <ImageSlider images={formData.optionImages} height={'h-56 '} onClick={()=>img.current.click()} manageIndex={setCurrentImageIndex} currentIndex={currentImageIndex} />
+                                        <ImageSlider images={formData.optionImages} height={'h-56'} onClick={()=>img.current.click()} manageIndex={setCurrentImageIndex} currentIndex={currentImageIndex} />
                                         {!formData.optionImages.length?<BiImageAdd onClick={()=>img.current.click()} className="w-10 h-10 text-gray-200 dark:text-gray-600" />:''}
                                         <input type="file" name="optionImages" ref={img} accept="image/jpeg,image/jpg,image/avif,image/png,image/gif,image/webp" className='hidden' onChange={handleFileChange} multiple/>
                                 </div>
@@ -276,21 +298,25 @@ const Options = () => {
                                     </div>
                                     <div className="text-black border border-gray-200 rounded-md ">
                                         <Select className="basic-single  text-black" placeholder="Select which price option" isClearable isSearchable
+                                         value={priceOption.map((op)=>{
+                                            if(op.value==formData.priceOption)return op})}
                                             name="priceOption"  onChange={(selectedOptions) => setFormData((prevFormData) =>({...prevFormData,priceOption:selectedOptions.value}))}
                                             options={priceOption}
                                         />
                                     </div> 
                                     <div className="text-black">
                                         <Select name="service" className="basic-single  text-black"
-                                            placeholder="Select which service" isClearable isSearchable
+                                            placeholder="Select which service" isClearable isSearchable 
+                                            value={serviceOptions.map((serv)=>{
+                                            if(serv.value==formData.service)return serv})}
                                             options={serviceOptions} onChange={(selectedOptions) => setFormData((prevFormData) =>({...prevFormData,service:selectedOptions.value}))}
                                         />
                                     </div> 
                                     <div>
-                                        <textarea className="border-2 rounded-md  border-gray-200 w-full h-20" name="description" placeholder='More details about option'  onChange={handleChange}/>
+                                        <textarea className="border-2 rounded-md  border-gray-200 w-full h-20" name="description" placeholder='More details about option' value={formData.description} onChange={handleChange}/>
                                     </div>
                                     <div className="flex items-center justify-between w-full">
-                                        <input type="number" min="0" name="price" placeholder="Options price here" value={formData.price} onChange={handleChange}
+                                        <input type="number" min="0" name="price" placeholder="Options price here"  value={formData.price} onChange={handleChange}
                                             className="flex-1 block h-10 px-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-md "
                                         />
                                     </div>
@@ -326,10 +352,11 @@ const Options = () => {
 
                 { modal ==='confirm'?<Modal closeModal={()=>{setModal('');setSelectedOption({});setLoading('')}} modalHeader={
                         <div className="flex items-center justify-center ">
-                            <Button content={<AiOutlineWarning className="text-3xl text-gray-500 m-4"/>}/>
+                            <Button content={<AiOutlineWarning className="text-6xl text-gray-500 m-4"/>}/>
                         </div>
                     }
-                    modalBody={<div ><p className="text-xl font-bold text-center my-2">Are you sure !!!</p></div>}
+                    modalBody={<div ><p className="text-xl font-mono text-center my-2">Are you sure !!! <br />
+                    you wand to {!selectedOption.isFlag? 'flag':'unflag' } {selectedOption.title}</p></div>}
                     modalFooter={
                         <div className="flex items-center justify-center gap-4 my-4">
                             <Button type="button" className="text-gray-500 bg-white hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 "

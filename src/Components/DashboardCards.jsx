@@ -19,7 +19,7 @@ const DashboardCards = ({content,value,icon,from}) => {
       <h6
         className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light"
       >
-        Value
+        {value}
       </h6>
       <span className="text-xl font-semibold">$30,000</span>
       <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
