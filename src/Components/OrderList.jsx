@@ -31,7 +31,11 @@ const OrderList = ({role,path,title,orderList,setOrderList}) => {
   }
 
   useEffect(()=>{
-    getOrderData()
+    if(path=='/dashboard'){
+      setTimeout(()=>{
+          getOrderData()
+      },30000)
+    }else getOrderData()
   },[])
 
   return (

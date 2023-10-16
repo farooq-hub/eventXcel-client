@@ -26,16 +26,16 @@ const Dashboard = () => {
     <>
         <div className="w-full grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
             <div className="flex items-center justify-between p-4 bg-white rounded-md ">
-                <DashboardCards value={'sdkjhskdjgh'} icon={<MdWorkHistory className="text-gray-300"/>}/>
+                <DashboardCards content={'Weekly salse'} value={200000} from={3} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
             <div className="flex items-center justify-between p-4 bg-white rounded-md ">
-                <DashboardCards icon={<MdWorkHistory className="text-gray-300"/>}/>
+                <DashboardCards content={'Monthly salse'} value={600000} from={6} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
             <div className="flex items-center justify-between p-4 bg-white rounded-md ">
-                <DashboardCards icon={<MdWorkHistory className="text-gray-300"/>}/>
+                <DashboardCards content={'Yearly salse'} value={600000} from={6} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
             <div className="flex items-center justify-between p-4 bg-white rounded-md ">
-                <DashboardCards icon={<MdWorkHistory className="text-gray-300"/>}/>
+                <DashboardCards  content={'Todays salse'} value={0} from={0} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
         </div> 
         <div>

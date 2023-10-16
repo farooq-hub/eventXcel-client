@@ -54,12 +54,12 @@ const TransactionChart = () => {
     {
       name: 'Credit',
       color: "#16A34A", // Green color for Series 1
-      data: [40, 30, 50, 60, 45,0,12,23,40,20,30,10],
+      data: [0, 0, 0, 0, 0,0,0,0,20,710160.00],
     },
     {
       name: 'Debit',
       color: '#FF0000', // Red color for Series 2
-      data: [35, 45, 55, 50, 40,12,23,40,20,30,10],
+      data: [0, 0, 0, 0, 0,0,0,0,110160.00],
     },
   ];
 
