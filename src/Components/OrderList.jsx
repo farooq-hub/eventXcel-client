@@ -12,7 +12,7 @@ const OrderList = ({role,path,title,orderList,setOrderList}) => {
 
   const [noMore,setNoMore] = useState(false)
   const [filter,setFilter] =useState('all')
-  const [loading,setLoading] =useState('')
+  const [loading,setLoading] =useState('getingOrders')
   const navigate = useNavigate()  
 
 
@@ -34,7 +34,7 @@ const OrderList = ({role,path,title,orderList,setOrderList}) => {
     if(path=='/dashboard'){
       setTimeout(()=>{
           getOrderData()
-      },30000)
+      },3000)
     }else getOrderData()
   },[])
 

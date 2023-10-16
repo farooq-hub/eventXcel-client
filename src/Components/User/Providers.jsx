@@ -187,14 +187,15 @@ const  Providers = ()=> {
                     </div>
                     <hr />
                     <div className={'grid grid-cols-1 2xl:grid-cols-3 lg:grid-cols-2 px-2 sm:px-6 py-6 sm:py-10 gap-8'}>
-                        {loading !== 'fetchingProviderFirst'|| loading !=='fetchingProvider' ?(
+                        {loading == 'fetchingProviderFirst'|| loading =='fetchingProvider'?
+                            ([1,2,3,4].map(()=><ProviderCardSkeleton key={uuidv4()}/>))
+                         :(
                         providers?.length && 
                         providers?.length !== 0 ? (
                                 providers
                                 // .filter((provider) => provider.name.includes(searchText))
                                 .map((provider) =><ProviderCard provider={provider} key={provider?._id}/>)
                             ):<ProviderCard role={'noProvider'} />)
-                            :([1,2,3,4].map(()=><ProviderCardSkeleton key={uuidv4()}/>))
                         }
                     
                     </div>

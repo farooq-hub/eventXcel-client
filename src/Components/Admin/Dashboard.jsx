@@ -34,7 +34,7 @@ const Dashboard = () => {
                 <DashboardCards content={'Yearly salse'} value={900000} from={9} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
             <div className="flex items-center justify-between p-4 bg-white rounded-md ">
-                <DashboardCards  content={'Todays salse'} value={0} from={0} icon={<MdWorkHistory className="text-gray-300"/>}/>
+                <DashboardCards  content={'Todays salse'} value={10000} from={1} icon={<MdWorkHistory className="text-gray-300"/>}/>
             </div>
         </div> 
                 <div className="w-full grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
