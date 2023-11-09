@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Button = ({content,type,className,handelEvent}) => {
   return (
     <>
-        <button type={type} className={className}  onClick={handelEvent}>{content}</button>
+      <button type={type} className={className}  onClick={handelEvent}>{content}</button>
     </>
   )
 }

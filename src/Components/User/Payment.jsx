@@ -19,7 +19,7 @@ const Payment = () => {
     useEffect(()=>{
         if(searchTerm == 'true'&&id) setPayment(true)
         else if(searchTerm == 'false') setPayment(false)
-        // else navigate(-1)
+        else navigate(-1)
     },[])
 
   return (
