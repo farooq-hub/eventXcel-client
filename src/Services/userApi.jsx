@@ -94,7 +94,32 @@ const usersGet =async (url) => {
    }
 }
 
-
+const usersDelete =async (url) => { 
+   try {
+      const token = getToken();
+      const response = await axiosInstance.delete( url,token ? { headers: { Authorization: `Bearer ${token}`}} :{});
+      response.data.msg ? toast.success(response?.data?.msg) : null
+      return response.data        
+   } catch (error) {
+      if (error.response?.status === 401) {
+         toast.error(error?.response?.data?.errMsg)
+      } else if (error.response?.status === 402) {
+         toast.warn(error?.response?.data?.errMsg)
+      }else if (error.response?.status === 403) {
+         toast.warn(error?.response?.data?.errMsg)
+      }else if (error.response?.status === 404) {
+         console.log(error.response?.data.errMsg,error);
+         toast.warn(error?.response?.data?.errMsg)
+      }else if (error.response?.status === 504) {
+        toast.warn(error?.response?.data?.errMsg)
+      }else if (error.response?.status === 500) {
+         console.log(error.response?.data.errMsg,error);
+         toast.warn(error?.response?.data?.errMsg)
+      } else {
+         toast.error(error)
+      }
+   }
+}
 
 
 

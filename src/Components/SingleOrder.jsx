@@ -121,8 +121,8 @@ const SingleOrder = ({role}) => {
                                 </div>
                             </>
                             :[1,2,3,4].map((val)=>(
-                            <div key={val+199999} className='flex space-x-5'><p className='w-56 h-8 bg-gray-300 animate-pulse'/>
-                                <p className='w-56 h-8 bg-gray-300 animate-pulse'/><p className='w-4'/>
+                            <div key={val+199999} className='flex space-x-5'><p className='w-44 h-8 bg-gray-300 animate-pulse'/>
+                                <p className='w-44 h-8 bg-gray-300 animate-pulse'/><p className='w-4'/>
                             </div>
                             ))
                         }
@@ -156,8 +156,8 @@ const SingleOrder = ({role}) => {
                                 </div>
                             </>
                             :[1,2,3,4].map((val)=>(
-                            <div key={val+199999} className='flex space-x-5'><p className='w-56 h-8 bg-gray-300 animate-pulse'></p>
-                                <p className='w-56 h-8 bg-gray-300 animate-pulse'></p><p className='w-4'></p>
+                            <div key={val+199999} className='flex space-x-5'><p className='w-44 h-8 bg-gray-300 animate-pulse'></p>
+                                <p className='w-44 h-8 bg-gray-300 animate-pulse'></p><p className='w-4'></p>
                             </div>
                             ))
                         }
@@ -201,8 +201,8 @@ const SingleOrder = ({role}) => {
                                 </div>
                             </>
                             :[1,2,3,4].map((val)=>(
-                            <div key={val+199999} className='flex space-x-5'><p className='w-56 h-8 bg-gray-300 animate-pulse'></p>
-                                <p className='w-56 h-8 bg-gray-300 animate-pulse'></p><p className='w-4'></p>
+                            <div key={val+199999} className='flex space-x-5'><p className='w-44 h-8 bg-gray-300 animate-pulse'></p>
+                                <p className='w-44 h-8 bg-gray-300 animate-pulse'></p><p className='w-4'></p>
                             </div>
                             ))
                         }

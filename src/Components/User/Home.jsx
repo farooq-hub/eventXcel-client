@@ -7,6 +7,7 @@ import Button from '../CustomComponent/Button'
 import { SlArrowDown } from 'react-icons/sl'
 import Spinner from '../Spinner'
 import SinglePost from '../SinglePost'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 
@@ -16,6 +17,8 @@ const Home = () => {
     const [singlePost, setSinglePost] = useState(false);
     const [selectedPost, setSelectedPost] = useState({});
     const userData = useSelector((state) => state.user.userData);
+    const navigate = useNavigate();
+
 
     const getPost =async ({more})=>{
         more ?setLoading('morePost'):setLoading('post')
@@ -67,7 +70,7 @@ const Home = () => {
 
             </div>
             <div className='border-l w-full overflow-hidden hidden lg:block  border-gray-100 lg:col-span-2'>
-                    <div  className="overflow-hidden bg-cover rounded-lg mx-auto cursor-pointer h-96 group mt-8 w-72 "
+                    <div onClick={navigate('/provider')} className="overflow-hidden bg-cover rounded-lg mx-auto cursor-pointer h-96 group mt-8 w-72 "
                       style={{ backgroundImage: `url('https://res.cloudinary.com/dq0tq9rf5/image/upload/v1690904935/u6k5hqrrwcnqjhro1qab.jpg')` }}>
                       <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
                           <h2 className="mt-4 text-xl font-semibold text-white capitalize">Teccas Events</h2>
@@ -76,7 +79,7 @@ const Home = () => {
                           >Visit Provider</a>
                       </div>
                   </div>
-                    <div  className="overflow-hidden bg-cover mx-auto rounded-lg cursor-pointer h-96 group mt-8 w-72 "
+                    <div onClick={navigate('/provider')} className="overflow-hidden bg-cover mx-auto rounded-lg cursor-pointer h-96 group mt-8 w-72 "
                     style={{ backgroundImage: `url('https://res.cloudinary.com/dq0tq9rf5/image/upload/v1690904854/gil5yqxwxlnbmaesolls.jpg')` }}>
                     <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
                         <h2 className="mt-4 text-xl font-semibold text-white capitalize">Teccas Events</h2>
