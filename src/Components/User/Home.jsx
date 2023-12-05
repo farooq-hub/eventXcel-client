@@ -41,7 +41,7 @@ const Home = () => {
 
     
   return (
-    <div className='h-96 w-full maxw-screen'>
+    <div className='h-96 w-full max-w-screen'>
         <div className="grid md:mx-2 grid-cols-1 lg:grid-cols-6">
             <div className='flex mt-4 flex-col items-center  lg:col-span-4'>
                 {loading == 'post'?
@@ -85,7 +85,7 @@ const Home = () => {
                         <h2 className="mt-4 text-xl font-semibold text-white capitalize">Teccas Events</h2>
                         <a className="mt-2 text-lg tracking-wider text-indigo-200 uppercase" 
                         
-                        >wisdeom Provider</a>
+                        >Wisdom Provider</a>
                     </div>
                   </div>
 

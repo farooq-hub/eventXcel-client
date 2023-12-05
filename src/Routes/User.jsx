@@ -31,7 +31,9 @@ const User = () => {
         <Route path="/otpLogin" element={userAuth ? <Navigate to='/' /> : <OtpLogin role='user'/> }/>
         <Route path="/login" element={userAuth ? <Navigate to='/' /> : <Login role='user'/> }/>
         <Route path="/register"  element={userAuth ? <Navigate to='/' /> : <Register />}/>
+        <Route path="/home" element={userAuth ? <HomePage/> :<Navigate to='/login'/>}/>
         <Route path="/" element={userAuth ? <HomePage/> :<Navigate to='/login'/>}/>
+
 
     </Routes>
   )
