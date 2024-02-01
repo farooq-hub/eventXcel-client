@@ -123,8 +123,7 @@ const Register = ()=> {
           }));
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const mobRegex = /^\+91[6-9]\d{9}$/;
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, one letter, one number
+        const mobRegex = /^\+91[6-9]\d{9}$/; // At least 8 characters, one letter, one number
         console.log('kjjj',mobRegex.test(phone),passwordRegex.test(password));
         if(name.trim().length == 0 ||email.trim().length == 0 || password.trim().length == 0 ||repassword.trim().length == 0){
             setError('Fill all the fields')
@@ -140,8 +139,8 @@ const Register = ()=> {
         else if(!emailRegex.test(email)){
             setError('Enter a valid email address')
             return false
-        }else if(!passwordRegex.test(password)){
-          setError('Password must have  At least 8 characters, one letter, one number')
+        }else if(password.trim().length < 9){
+          setError('Password must have  At least 8 characters')
           return false
       }else if(repassword !== password){
           setError('Confirm password incurrect')
